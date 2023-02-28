@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cf6de20b2646f4193e999d2dee71e4, type: 3}
+  m_Name: 6-WarriorCardPack
+  m_EditorClassIdentifier: 
+  _sideType: 2
+  _cost: 6
+  _cards:
+  - Id: 2601
+    Name: Decimator_Olgra_full
+    Texture: {fileID: 2800000, guid: 080451563cea4314291381a5c25204c2, type: 3}
+    Attack: 3
+    Health: 7
+    Type: 0
+  - Id: 2602
+    Name: Captain_Galvangar_full
+    Texture: {fileID: 2800000, guid: 175c584e24bbd954f81117709561eadb, type: 3}
+    Attack: 6
+    Health: 6
+    Type: 0
+  - Id: 2603
+    Name: Krig
+    Texture: {fileID: 2800000, guid: 1211b13909efd514ab362b23642e4b6b, type: 3}
+    Attack: 3
+    Health: 9
+    Type: 2

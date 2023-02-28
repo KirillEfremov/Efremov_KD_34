@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Descriptions>
+  <Pack Cost="1" Type="Mage">
+    <Unit Id="1101" Name="The sorcerer's gambit">
+      Task Chain: Cast a spell of fire, ice, and arcane magic. Reward: You take a spell
+    </Unit>
+  </Pack>
+
+  <Pack Cost="4" Type="Mage">
+    <Unit Id="1401" Name="Burmistr Orion">
+    When your secret is revealed, he lays out another magician's secret and gets +2/+2
+    </Unit>
+    <Unit Id="1402" Name="Warden ray of dawn">
+      #Battlecry/#: freezes
+    </Unit>
+    <Unit Id="1403" Name="Commander_Sivara_full (1)">
+      #Battlecry/#: if you cast three spells with this card in your hand, you put them back in your hand
+    </Unit>
+  </Pack>
+
+  <Pack Cost="5" Type="Mage">
+    <Unit Id="1501" Name="Vexallus">
+      Your arcane magic spells are triggered twice.
+    </Unit>
+    <Unit Id="1502" Name="Lady_Naz%27jar_full">
+      While this card is in your hand, it turns when you cast a fire, ice, or arcane magic spell
+    </Unit>
+    <Unit Id="1503" Name="Aegwynn%2C_the_Guardian_full">
+      #Spell Damage +2/#
+    </Unit>
+  </Pack>
+
+  <Pack Cost="6" Type="Mage">
+    <Unit Id="1601" Name="Balinda">
+      #Battlecry/#: you take 2 spells. Swaps the values of their value and the characteristics of this creature
+    </Unit>
+  </Pack>
+
+  <Pack Cost="7" Type="Mage">
+    <Unit Id="1701" Name="Magistr Warden">
+      #Battlecry/#: you re-cast a spell from all the schools of magic that you used during the match
+      </Unit>
+  </Pack>
+</Descriptions>

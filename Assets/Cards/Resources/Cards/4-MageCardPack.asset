@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cf6de20b2646f4193e999d2dee71e4, type: 3}
+  m_Name: 4-MageCardPack
+  m_EditorClassIdentifier: 
+  _sideType: 1
+  _cost: 4
+  _cards:
+  - Id: 1401
+    Name: BurmistrOrion
+    Texture: {fileID: 2800000, guid: 8b849a20529e6564b985c1afdf2de302, type: 3}
+    Attack: 3
+    Health: 5
+    Type: 0
+  - Id: 1402
+    Name: WardenRayOfDawn
+    Texture: {fileID: 2800000, guid: e436fee7739a4d44c8a847118daec7ef, type: 3}
+    Attack: 3
+    Health: 3
+    Type: 0
+  - Id: 1403
+    Name: Commander_Sivara_full
+    Texture: {fileID: 2800000, guid: 10f1861838c7d0d4d9788d3a99945542, type: 3}
+    Attack: 3
+    Health: 5
+    Type: 0

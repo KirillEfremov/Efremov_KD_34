@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Descriptions>
+  <Pack Cost="1" Type="Warrior">
+    <Unit Id="2101" Name="A raid in the port">
+      Chain of tasks: Play 3 pirates. Reward: You take the weapon.
+    </Unit>
+  </Pack>
+  
+  <Pack Cost="3" Type="Warrior">
+    <Unit Id="2301" Name="Asvedon%2C_the_Grandshield_full">
+      #Battlecry/#: #Taunt/#: applies a copy of the last spell cast by the opponent
+    </Unit>
+    <Unit Id="2302" Name="Rokara_full">
+      #Onslaught/#: After your creature attacks and survives, it gets +1/+1
+    </Unit>
+  </Pack>
+  
+
+  <Pack Cost="4" Type="Warrior">
+    <Unit Id="2401" Name="Thori%27belore_full">
+      #Onslaught/#: Death rattle: falls into hibernation. To revive Tori'belore, cast a fire spell
+    </Unit>
+  </Pack>
+
+  <Pack Cost="5" Type="Warrior">
+    <Unit Id="2501" Name="Dari Krauli">
+      #Onslaught/#: Gets +2/+2 , after attacking and killing another creature
+    </Unit>
+    <Unit Id="2502" Name="Lady_Ashvane_full">
+      #Battlecry/#: All weapons are in your hand, in the deck and in the game. +1/+1
+    </Unit>
+  </Pack>
+
+  <Pack Cost="6" Type="Warrior">
+    <Unit Id="2601" Name="Decimator_Olgra_full">
+      #Onslaught/#: Gets +1/+1 for each creature with incomplete health and attacks all opponents
+    </Unit>
+    <Unit Id="2602" Name="Captain_Galvangar_full">
+      #Onslaught/#: If you received at least 15 armor units during the match, you get +3/+3 and "Charge"
+    </Unit>
+    <Unit Id="2603" Name="Krig">
+      #Rabies/#: You get +8 to armor. Death rattle: equips you with a turtle spike 2/5
+    </Unit>
+  </Pack>
+
+  <Pack Cost="7" Type="Warrior">
+    <Unit Id="2701" Name="Nellijpg">
+      #Battlecry/#: Giant +1. You dig up 3 pirates to crew Nelly's ship!
+    </Unit>
+    <Unit Id="2702" Name="Deathbringer_Saurfang_full">
+      #Battlecry/#: Resurrects 2 of your creatures with "Rabies". Deals 1 damage to other creatures
+    </Unit>
+    <Unit Id="2703" Name="Lothar_full">
+      At the end of your turn, a random enemy creature attacks. If it dies, it gets +3/+3
+    </Unit>
+    <Unit Id="2704" Name="Remorniya">
+      #Onslaught/#:: After this creature attacks, it becomes your weapon
+    </Unit>
+    <Unit Id="2705" Name="Rokara_the_Valorous_full">
+      #Battlecry/#: Equips you with an Irresistible force of 5/2
+    </Unit>
+  </Pack>
+</Descriptions>

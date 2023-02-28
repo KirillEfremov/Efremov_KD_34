@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cf6de20b2646f4193e999d2dee71e4, type: 3}
+  m_Name: 6-MageCardPack
+  m_EditorClassIdentifier: 
+  _sideType: 1
+  _cost: 6
+  _cards:
+  - Id: 1601
+    Name: Balinda
+    Texture: {fileID: 2800000, guid: 94042b992ca68074ca5efc18521fdb2a, type: 3}
+    Attack: 5
+    Health: 5
+    Type: 0

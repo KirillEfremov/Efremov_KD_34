@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cf6de20b2646f4193e999d2dee71e4, type: 3}
+  m_Name: 5-MageCardPack
+  m_EditorClassIdentifier: 
+  _sideType: 1
+  _cost: 5
+  _cards:
+  - Id: 1501
+    Name: Vexallus
+    Texture: {fileID: 2800000, guid: b2b7f1aa8be954046bf681dd4dc0b51c, type: 3}
+    Attack: 3
+    Health: 5
+    Type: 0
+  - Id: 1502
+    Name: Lady_Naz27jar_full
+    Texture: {fileID: 2800000, guid: 634ead2745ec3f042a5b6a92cfa8248f, type: 3}
+    Attack: 5
+    Health: 5
+    Type: 0
+  - Id: 1503
+    Name: Aegwynn2C_the_Guardian_full
+    Texture: {fileID: 2800000, guid: 5ad5da3be1a8a524289bfbe9a50dd86b, type: 3}
+    Attack: 5
+    Health: 5
+    Type: 0

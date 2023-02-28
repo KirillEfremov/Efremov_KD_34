@@ -1,0 +1,47 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4cf6de20b2646f4193e999d2dee71e4, type: 3}
+  m_Name: 7-WarriorCardPack
+  m_EditorClassIdentifier: 
+  _sideType: 2
+  _cost: 7
+  _cards:
+  - Id: 2701
+    Name: Nellijpg
+    Texture: {fileID: 2800000, guid: c426f82e867242c4db4122856753e655, type: 3}
+    Attack: 5
+    Health: 5
+    Type: 2
+  - Id: 2702
+    Name: Deathbringer_Saurfang_full
+    Texture: {fileID: 2800000, guid: 4d639f9d90414b84aa93375b7e53dede, type: 3}
+    Attack: 5
+    Health: 4
+    Type: 0
+  - Id: 2703
+    Name: Lothar_full
+    Texture: {fileID: 2800000, guid: 5c0d1972688283c4a94e1b70830fdd51, type: 3}
+    Attack: 7
+    Health: 7
+    Type: 0
+  - Id: 2704
+    Name: Remorniya
+    Texture: {fileID: 2800000, guid: 590f9cff8f779fb45a5f388050ffd1b9, type: 3}
+    Attack: 5
+    Health: 10
+    Type: 0
+  - Id: 2705
+    Name: Rokara_the_Valorous_full
+    Texture: {fileID: 2800000, guid: 45ab1312b400dcc48983e310a9221d3a, type: 3}
+    Attack: 0
+    Health: 0
+    Type: 0
