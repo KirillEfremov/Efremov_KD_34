@@ -1,4 +1,5 @@
 ﻿using Cards;
+using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
@@ -23,9 +24,16 @@ namespace Card
         private TextMeshPro _attack; //_атака
         [Space, SerializeField]
         private TextMeshPro _health; //_здоровье
+        private Transform[] _positions;
+        private Card[] _cards;
 
         Camera MainCamera;
         public Transform DefaultParent;
+
+        public void OnStart()
+        {
+            _cards = new Card[_positions.Length];
+        }
         void Awake()
         {
             MainCamera = Camera.allCameras[0];
@@ -72,9 +80,40 @@ namespace Card
             transform.localPosition += new Vector3(eventData.delta.x, eventData.delta.y, 0) / transform.lossyScale.x;// Thanks to the canvas scaler we need to devide pointer delta by canvas scale to match pointer movement.
             */
         }
+        private IEnumerator MoveOnTable (Card card, Transform parent)
+        {
+            var time = 0f;
+            var endPos = parent.position;
 
+            yield return new WaitForSeconds(1.5f);
+
+
+
+            while (time < 1f)
+            {
+                card.transform.position = Vector3.Lerp(card.transform.position, endPos, time);
+                time += Time.deltaTime;
+                yield return null;
+            }
+
+            card.transform.parent = parent;
+            card.State = CardStateType.OnTable;
+        }
+        private int GetLastPosition()
+        {
+            for (int i = 0; i < _cards.Length; i++)
+            {
+                if (_cards[i] == null)
+                    return i;
+            }
+            return -1;
+        }
+        Card card;
         public void OnEndDrag(PointerEventData eventData) //завершение процесса перетаскивания, помещаем объект в нужное место
         {
+          var result = GetLastPosition();
+          StartCoroutine(MoveOnTable(card, _positions[result]));            
+
             /*
             // On end we need to test if we can drop item into new slot.
             var results = new List<RaycastResult>();
