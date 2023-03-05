@@ -53,9 +53,21 @@ namespace Card
                 {
                     if (_deck1[i] == null) continue; 
 
-                    _playerHand1.SetNewCard(_deck1[i]); 
+                    _playerHand1.SetNewCard1(_deck1[i]); 
                     _deck1[i] = null; 
                     break; 
+                }
+            }
+
+            if (Input.GetKeyDown(KeyCode.Z))
+            {
+                for (int i = _deck2.Length - 1; i >= 0; i--)
+                {
+                    if (_deck2[i] == null) continue;
+
+                    _playerHand2.SetNewCard2(_deck2[i]);
+                    _deck2[i] = null;
+                    break;
                 }
             }
         }

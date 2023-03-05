@@ -1264,7 +1264,6 @@ GameObject:
   - component: {fileID: 1307249474124220041}
   - component: {fileID: 1307249474124220040}
   - component: {fileID: -2842750781660612699}
-  - component: {fileID: 3219008227745466403}
   m_Layer: 0
   m_Name: CardPrefab
   m_TagString: Untagged
@@ -1368,19 +1367,4 @@ MonoBehaviour:
   _type: {fileID: 1307249472091281202}
   _attack: {fileID: 1307249473160749871}
   _health: {fileID: 1307249473871312366}
---- !u!111 &3219008227745466403
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1307249474124220039}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 0}
-  m_Animations:
-  - {fileID: 7400000, guid: 368b318c84c245f41bbd2cc8df2f313d, type: 2}
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
+  _card: {fileID: 0}
