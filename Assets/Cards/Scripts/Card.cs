@@ -1,4 +1,5 @@
 ﻿using Cards;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -99,7 +100,6 @@ namespace Card
         public void OnDrag(PointerEventData eventData)
         {
             transform.position += new Vector3(eventData.delta.x, 0f, eventData.delta.y);
-           
         }
 
         public void OnEndDrag(PointerEventData eventData)
@@ -114,12 +114,7 @@ namespace Card
         {
             IsEnable = !IsEnable;
         } 
-        /*
-        public void SwitchNonVisual()
-        {
-            IsEnable = IsEnable;
-        }
-        */
+      
     }
 }
 
