@@ -1,14 +1,12 @@
 ﻿using Cards;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UI;
+using UnityEngine.UIElements;
 
-namespace Card
+namespace Cards
 {
-    public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler
+    public class Card : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IDragHandler, IBeginDragHandler, IEndDragHandler, IPointerDownHandler
     {
         [SerializeField]
         private GameObject _frontCard;
@@ -29,7 +27,6 @@ namespace Card
         private Transform[] _positions;
         private Card[] _cards;
         private PlayerHand _camerMove;
-
         [SerializeField]
         private Transform _card;
 
@@ -59,6 +56,29 @@ namespace Card
             _type.text = data.Type == CardUnitType.None ? string.Empty : data.Type.ToString();
             _attack.text = data.Attack.ToString();
             _health.text = data.Health.ToString();
+        }
+        public void OnPointerDown(PointerEventData eventData)
+        {
+            switch (State)
+            {
+                case CardStateType.InHand:
+                    break;
+                case CardStateType.OnTable:
+                    break;
+                case CardStateType.Discard:
+                    break;
+                default:
+                    if (CardManager.Self.GetIsPlayer1Turn())
+                    {
+                        StartCardManager.Self.PlaceCardInDeck1(this, CardManager.Self.GetCardNumber1());
+                    }
+                    else if (!CardManager.Self.GetIsPlayer1Turn())
+                    {
+                        StartCardManager.Self.PlaceCardInDeck2(this, CardManager.Self.GetCardNumber2());
+                    }
+
+                    break;
+            }
         }
 
         public void OnPointerEnter(PointerEventData eventData)
@@ -95,26 +115,60 @@ namespace Card
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-    
+            /*
+            Debug.Log("BeginDrag");
+            if (Input.GetMouseButtonDown(0))
+            {
+                Destroy(gameObject);
+            }
+            */
+            
         }
         public void OnDrag(PointerEventData eventData)
         {
-            transform.position += new Vector3(eventData.delta.x, 0f, eventData.delta.y);
+           
+                transform.position += new Vector3(eventData.delta.x, 0f, eventData.delta.y);
+           
+
+            switch (State)
+            {
+                case CardStateType.InHand:
+                    var hitPos = eventData.pointerCurrentRaycast.worldPosition;
+                    var pos = transform.position;
+                    transform.position = new Vector3(hitPos.x, 0.1f, hitPos.z);
+
+                    DefinitionObjectUder();
+                    break;
+                case CardStateType.OnTable:
+                    break;
+
+            }
+        }
+
+        private void DefinitionObjectUder()
+        {
+            /*
+            Vector3 origin = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
+            Vector3 direction = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
+            Physics.Raycast(origin, direction, out var hit, 1000f);
+            */
         }
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            
+            /*
+            Vector3 startPosition = new Vector3(-300, 0, 0);
+            var offset = new Vector3(100, 0, 0);
+            transform.position = startPosition + offset;
+            */
         }
-
 
         [ContextMenu("Switch Visual")]
 
         public void SwitchVisual()
         {
             IsEnable = !IsEnable;
-        } 
-      
+        }
     }
 }
 

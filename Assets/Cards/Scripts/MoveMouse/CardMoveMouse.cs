@@ -1,12 +1,11 @@
-﻿using Card;
-using Cards;
+﻿using Cards;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 
-namespace Card
+namespace Cards
 {
     public class CardMoveMouse : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
     {

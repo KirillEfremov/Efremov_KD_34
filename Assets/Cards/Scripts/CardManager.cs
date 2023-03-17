@@ -1,24 +1,27 @@
 ﻿using Cards;
 using Cards.ScriptableObjects;
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
-namespace Card
+namespace Cards
 {
     public class CardManager : MonoBehaviour
     {
-        private Material _baseMat; 
-        private List<CardPropertiesData> _allCards; 
-        private List<MageCardPack> _mageCards;
-        private List<WarriorCardPack> _warriorCards;
-        private Card[] _deck1; 
-        private Card[] _deck2; 
+        public static CardManager Self;
+
+        protected Material _baseMat; 
+        protected List<CardPropertiesData> _allCards;
+        protected Card[] _deck1;
+        protected Card[] _deck2; 
         [SerializeField]
         private CardPackConfiguration[] _packs; 
-        [SerializeField] private Card _cardPrefab; 
+        [SerializeField] 
+        protected Card _cardPrefab; 
         [Space, SerializeField, Range(1f, 100f)]
-        private int _countCardInDeck = 30; 
+        private int _countCardInDeck = 30;
+
         [SerializeField, Space]
         private Transform _deck1Parent; 
         [SerializeField]
@@ -26,8 +29,16 @@ namespace Card
         [SerializeField]
         private PlayerHand _playerHand1; 
         [SerializeField]
-        private PlayerHand _playerHand2; 
-        public Animation Anim; 
+        private PlayerHand _playerHand2;
+        [SerializeField]
+        private PlayerHand _camerMove;
+
+        protected bool _isPlayer1Turn = true;
+
+        public static int _cardNumber1 = 3;
+        public static int _cardNumber2 = 3;
+        
+  
         private void Awake()
         {
             IEnumerable<CardPropertiesData> cards = new List<CardPropertiesData>(); 
@@ -39,6 +50,15 @@ namespace Card
 
         }
 
+        public bool GetIsPlayer1Turn()
+        {
+            return _isPlayer1Turn;
+        }
+        public int GetCardNumber1() => _cardNumber1;
+
+        public int GetCardNumber2() => _cardNumber2;
+
+       
         private void Start()
         {
             _deck1 = CreateDeck(_deck1Parent);
@@ -47,30 +67,38 @@ namespace Card
 
         private void Update()
         {
-            if(Input.GetKeyDown(KeyCode.Space)) 
+            if (_camerMove.CamerMove == false)
             {
-                for(int i = _deck1.Length -1; i >= 0; i--) 
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    if (_deck1[i] == null) continue; 
+                    for (int i = _deck1.Length - 1; i >= 0; i--)
+                    {
+                        if (_deck1[i] == null) continue;
 
-                    _playerHand1.SetNewCard1(_deck1[i]); 
-                    _deck1[i] = null; 
-                    break; 
+                        _playerHand1.SetNewCard1(_deck1[i]);
+                        _deck1[i] = null;
+                        break;
+                    }
                 }
             }
-
-            if (Input.GetKeyDown(KeyCode.Z))
+            if (_camerMove.CamerMove == true)
             {
-                for (int i = _deck2.Length - 1; i >= 0; i--)
+                if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    if (_deck2[i] == null) continue;
+                    for (int i = _deck2.Length - 1; i >= 0; i--)
+                    {
+                        if (_deck2[i] == null) continue;
 
-                    _playerHand2.SetNewCard2(_deck2[i]);
-                    _deck2[i] = null;
-                    break;
+                        _playerHand2.SetNewCard2(_deck2[i]);
+                        _deck2[i] = null;
+                        break;
+                    }
                 }
             }
         }
+
+        public void StartGame() => SceneManager.LoadScene("SampleScene");
+
 
         private Card[] CreateDeck(Transform parent) 
         {
@@ -90,5 +118,6 @@ namespace Card
             }
             return deck; 
         }
+
     }
 }

@@ -1,13 +1,11 @@
 ﻿using Cards;
 using System.Collections;
-using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
-using UnityEngine.PlayerLoop;
-using static UnityEditor.SceneView;
 
-namespace Card
+namespace Cards
 {
-    public class PlayerHand : Card
+    public class PlayerHand : MonoBehaviour
     {
         private Card[] _cards;
         private Vector3 _endRot;
@@ -18,41 +16,38 @@ namespace Card
         private int _offset2 = 200;
         [SerializeField]
         private Transform[] _positions;
+        [SerializeField]
+        private TextMeshPro _health1Player;
+        [SerializeField]
+        private TextMeshPro _health2Player;
+        private bool _camerMove = false;
 
-        private void Update()
-        {
-            /*
-            if (Input.GetMouseButtonDown(0))
-            {
-                Ray ray = Camera.main.ScreenPointToRay(new Vector3(Input.mousePosition.y, 1));
-                RaycastHit _hit;
-                if (Physics.Raycast(ray, out _hit, Mathf.Infinity))
-                    Destroy(_hit.transform.gameObject);
-            }
-            */
-        }
+
 
         #region CamerMove 
         [SerializeField] private Transform camer;
         [SerializeField] private Vector3 positionPlayer1;
         [SerializeField] private Vector3 positionPlayer2;
 
-        private bool _move = true;
-
-        void Move(Transform chip, Transform cell)
-        {
-            StartCoroutine(Position(chip, cell.transform.position, 0.15f));
-        }
+      
         public void CamerMoveToPlayer2()
         {
             StartCoroutine(PositionCamer(camer, positionPlayer2, 1.5f));
             StartCoroutine(PositionCamerToPlayer2Rotation(camer, 1.5f));
+            CamerMove = true;
         }
 
         public void CamerMoveToPlayer1()
         {
             StartCoroutine(PositionCamer(camer, positionPlayer1, 1.5f));
             StartCoroutine(PositionCamerToPlayer1Rotation(camer, 1.5f));
+            CamerMove = false;
+        }
+        public bool CamerMove
+        {
+            get { return _camerMove; }
+            set { _camerMove = value; }
+            
         }
 
         private IEnumerator PositionCamerToPlayer2Rotation(Transform obj, float TravelTime)
@@ -121,6 +116,8 @@ namespace Card
         }
         #endregion
 
+
+
         private void Start()
         {
             _cards = new Card[_positions.Length]; 
@@ -139,11 +136,6 @@ namespace Card
         public bool SetNewCard1(Card card)
         {
             var result = GetLastPosition();
-
-            if (result == 9)
-            {
-                CamerMoveToPlayer2();
-            }
 
             if (result == -1)
             {
@@ -168,11 +160,6 @@ namespace Card
         public bool SetNewCard2(Card card)
         {
             var result = GetLastPosition();
-
-            if (result == 9)
-            {
-                CamerMoveToPlayer1();
-            }
 
             if (result == -1)
             {

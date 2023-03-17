@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using static UnityEditor.SceneView;
 
-namespace Card
+namespace Cards
 {
     public class CamerMove : PlayerHand
     {
