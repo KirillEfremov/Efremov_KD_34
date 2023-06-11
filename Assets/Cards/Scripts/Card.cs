@@ -2,7 +2,6 @@
 using TMPro;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.UIElements;
 
 namespace Cards
 {
@@ -43,7 +42,6 @@ namespace Cards
                 _frontCard.SetActive(value);
             }
         }
-
 
         public CardStateType State { get; set; } = CardStateType.InDeck;
 
@@ -88,11 +86,11 @@ namespace Cards
             {
                 case CardStateType.InHand:
                     transform.localScale *= 3f;
-                    transform.position += new Vector3(0f, 2f, 100f);
+                    transform.position += new Vector3(0f, 0f, 100f);
                     break;
                 case CardStateType.OnTable:
                     transform.localScale *= 3f;
-                    transform.position += new Vector3(0f, 2f, 100f);
+                    transform.position += new Vector3(0f, 0f, 100f);
                     break;
             }
         }
@@ -103,11 +101,11 @@ namespace Cards
             {
                 case CardStateType.InHand:
                     transform.localScale /= 3f;
-                    transform.position -= new Vector3(0f, 2f, 100f);
+                    transform.position -= new Vector3(0f, 0f, 100f);
                     break;
                 case CardStateType.OnTable:
                     transform.localScale /= 3f;
-                    transform.position -= new Vector3(0f, 2f, 100f);
+                    transform.position -= new Vector3(0f, 0f, 100f);
                     break;
             }
 
@@ -115,13 +113,7 @@ namespace Cards
 
         public void OnBeginDrag(PointerEventData eventData)
         {
-            /*
-            Debug.Log("BeginDrag");
-            if (Input.GetMouseButtonDown(0))
-            {
-                Destroy(gameObject);
-            }
-            */
+        
             
         }
         public void OnDrag(PointerEventData eventData)
@@ -137,7 +129,6 @@ namespace Cards
                     var pos = transform.position;
                     transform.position = new Vector3(hitPos.x, 0.1f, hitPos.z);
 
-                    DefinitionObjectUder();
                     break;
                 case CardStateType.OnTable:
                     break;
@@ -145,22 +136,11 @@ namespace Cards
             }
         }
 
-        private void DefinitionObjectUder()
-        {
-            /*
-            Vector3 origin = new Vector3(transform.position.x, transform.position.y + 10, transform.position.z);
-            Vector3 direction = new Vector3(transform.position.x, transform.position.y + 0.1f, transform.position.z);
-            Physics.Raycast(origin, direction, out var hit, 1000f);
-            */
-        }
+      
 
         public void OnEndDrag(PointerEventData eventData)
         {
-            /*
-            Vector3 startPosition = new Vector3(-300, 0, 0);
-            var offset = new Vector3(100, 0, 0);
-            transform.position = startPosition + offset;
-            */
+      
         }
 
         [ContextMenu("Switch Visual")]
@@ -169,6 +149,7 @@ namespace Cards
         {
             IsEnable = !IsEnable;
         }
+
     }
 }
 
