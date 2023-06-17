@@ -72,7 +72,6 @@ namespace Cards
 
             for (int i = 0, j = 0; i < _allCards.Count; i++, j++)
             {
-
                 heap[i] = Instantiate(_cardPrefab, _positions[j]);
                 heap[i].transform.position = _positions[j].position;
                 heap[i].transform.eulerAngles = new Vector3(-90f, 180f, 0f);
@@ -83,7 +82,7 @@ namespace Cards
                 var newMaterial = new Material(_baseMat);
                 newMaterial.mainTexture = random.Texture;
 
-                heap[i].Configuration(random, CardUtility.GetDescriptionById(random.Id), newMaterial);
+                heap[i].Configuration(random, CardUtility.GetDescriptionById(random.Id), newMaterial, 0);
             }
             return heap;
 

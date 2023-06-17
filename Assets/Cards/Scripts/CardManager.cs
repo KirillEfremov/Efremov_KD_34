@@ -61,8 +61,8 @@ namespace Cards
        
         private void Start()
         {
-            _deck1 = CreateDeck(_deck1Parent);
-            _deck2 = CreateDeck(_deck2Parent); 
+            _deck1 = CreateDeck(_deck1Parent, 1);
+            _deck2 = CreateDeck(_deck2Parent, 2); 
         }
 
         private void Update()
@@ -100,7 +100,7 @@ namespace Cards
         public void StartGame() => SceneManager.LoadScene("SampleScene");
 
 
-        private Card[] CreateDeck(Transform parent) 
+        private Card[] CreateDeck(Transform parent, int ownerPlayer) 
         {
             var deck = new Card[_countCardInDeck]; 
             var offset = 0.8f; 
@@ -114,7 +114,7 @@ namespace Cards
                 var random = _allCards[Random.Range(0, _allCards.Count)]; 
                 var newMat = new Material(_baseMat);  
                 newMat.mainTexture = random.Texture; 
-                deck[i].Configuration(random, CardUtility.GetDescriptionById(random.Id), newMat); 
+                deck[i].Configuration(random, CardUtility.GetDescriptionById(random.Id), newMat, ownerPlayer); 
             }
             return deck; 
         }

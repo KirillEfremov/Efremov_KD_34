@@ -57,7 +57,7 @@ namespace Cards
         }
 
         public void OnEndDrag(PointerEventData eventData)
-        {
+		{
             var result = GetLastPosition();
             StartCoroutine(MoveOnTable(_card, _positionsParent[result]));
         }
