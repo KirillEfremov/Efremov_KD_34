@@ -27,9 +27,9 @@ namespace Cards
         [SerializeField]
         private Transform _deck2Parent; 
         [SerializeField]
-        private PlayerHand _playerHand1; 
+        public PlayerHand _playerHand1; 
         [SerializeField]
-        private PlayerHand _playerHand2;
+        public PlayerHand _playerHand2;
         [SerializeField]
         private PlayerHand _camerMove;
 
@@ -37,7 +37,8 @@ namespace Cards
 
         public static int _cardNumber1 = 3;
         public static int _cardNumber2 = 3;
-        
+
+        public int walkingPlayer = 1;
   
         private void Awake()
         {
@@ -119,5 +120,9 @@ namespace Cards
             return deck; 
         }
 
+        public void SetWalkingPlayer(int newWalkingPlayer)
+        {
+            walkingPlayer = newWalkingPlayer;
+        }
     }
 }

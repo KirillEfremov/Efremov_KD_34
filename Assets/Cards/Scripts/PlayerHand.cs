@@ -7,7 +7,7 @@ namespace Cards
 {
     public class PlayerHand : MonoBehaviour
     {
-        private Card[] _cards;
+        public Card[] _cards;
         private Vector3 _endRot;
         private Vector3 _upPos;
         private Vector3 _previewPos1;

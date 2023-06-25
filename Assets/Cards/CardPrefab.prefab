@@ -1301,8 +1301,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1307249474124220039}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 579, y: 72, z: 3710}
-  m_LocalScale: {x: 2.362601e+18, y: 5.003155e+16, z: 3.8913418e+18}
+  m_LocalPosition: {x: 579, y: 80, z: 4110}
+  m_LocalScale: {x: 1.9137067e+20, y: 4.0525552e+18, z: 3.1519867e+20}
   m_Children:
   - {fileID: 1307249472203900902}
   - {fileID: 1307249474052391472}
@@ -1391,5 +1391,7 @@ MonoBehaviour:
   _type: {fileID: 1307249472091281202}
   _attack: {fileID: 1307249473160749871}
   _health: {fileID: 1307249473871312366}
+  _healthOfHero1: {fileID: 0}
+  _healthOfHero2: {fileID: 0}
   ownerPlayer: 0
   _card: {fileID: 1307249474124220043}
