@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -106,7 +107,7 @@ namespace Cards
 
                     break;
             }
-			
+
 			Text text = GameObject.FindGameObjectWithTag("SelectUnitText").GetComponent<Text>();
 			if (text != null && text.text == "Выбирите дружественного юнита!")
 			{
@@ -198,38 +199,47 @@ namespace Cards
 
         public void OnPointerEnter(PointerEventData eventData)
         {
+        }
+        
+        public void OnPointerExit(PointerEventData eventData)
+        {
+        }
+
+        public void OnMouseEnter()
+        {
             //if (Turn.Player1 != Side) return; 
-            switch (State)
+
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit))
             {
-                case CardStateType.InHand:
+                Debug.Log(hit.collider.gameObject.name);
+                if (hit.collider != null && hit.collider.gameObject == gameObject)
+                {
+                    Debug.Log("Курсор наведен на объект с BoxCollider");
                     transform.localScale *= 3f;
-                    GetComponent<BoxCollider>().size /= 3f;
-                    transform.position += new Vector3(0f, 0f, 100f);
-                    break;
-                case CardStateType.OnTable:
-                    transform.localScale *= 3f;
-                    GetComponent<BoxCollider>().size /= 3f;
-                    transform.position += new Vector3(0f, 0f, 100f);
-                    break;
+                    GetComponent<BoxCollider>().size /= 2f;
+                    transform.position += new Vector3(0f, 0f, 50f);
+                }
             }
         }
 
-        public void OnPointerExit(PointerEventData eventData)
+        void OnMouseExit()
         {
-            switch (State)
-            {
-                case CardStateType.InHand:
-                    transform.localScale /= 3f;
-                    GetComponent<BoxCollider>().size *= 3f;
-                    transform.position -= new Vector3(0f, 0f, 100f);
-                    break;
-                case CardStateType.OnTable:
-                    transform.localScale /= 3f;
-                    GetComponent<BoxCollider>().size *= 3f;
-                    transform.position -= new Vector3(0f, 0f, 100f);
-                    break;
-            }
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            RaycastHit hit;
 
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (hit.collider == null || hit.collider.gameObject.tag != "Card" || hit.collider.GetComponent<BoxCollider>() == null)
+                {
+                    Debug.Log("Курсор не наведен на объект с BoxCollider");
+                    transform.localScale /= 3f;
+                    GetComponent<BoxCollider>().size *= 2f;
+                    transform.position -= new Vector3(0f, 0f, 50f);
+                }
+            }
         }
 
         public void OnBeginDrag(PointerEventData eventData)
@@ -242,24 +252,49 @@ namespace Cards
 			RaycastHit hit;
 			if (cardManager != null && ownerPlayer == cardManager.walkingPlayer)
 			{
-                if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("CardConnectionPlayer1")) && hit.transform.childCount < 1)
+                string thisManaPlayer1string = Regex.Replace(cardManager.manaPlayer1Text.text, "[^0-9]", "");
+                string thisManaPlayer2string = Regex.Replace(cardManager.manaPlayer2Text.text, "[^0-9]", "");
+                int thisManaPlayer1 = Convert.ToInt32(thisManaPlayer1string);
+                int thisManaPlayer2 = Convert.ToInt32(thisManaPlayer2string);
+                if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("CardConnectionPlayer1")) && hit.transform.childCount < 1 && Convert.ToInt32(_cost.text) <= thisManaPlayer1)
                 {
                     gameObject.transform.SetParent(hit.transform);
                     _cards = cardManager._playerHand1._cards;
-                    for (int i = 0; i < _cards.Length; i++)
+                    thisManaPlayer1 -= Convert.ToInt32(_cost.text);
+                    Debug.Log(thisManaPlayer1);
+                    if (thisManaPlayer1 < 1)
                     {
                         cardManager.walkingPlayer = 2;
+                        cardManager.manaPlayer1++;
+                        cardManager.manaPlayer1Text.text = "<color=blue>Мана: <color=yellow>" + cardManager.manaPlayer1.ToString();
+                    }
+                    else
+                    {
+                        cardManager.manaPlayer1Text.text = "<color=blue>Мана: <color=yellow>" + thisManaPlayer1.ToString();
+                    }
+                    for (int i = 0; i < _cards.Length; i++)
+                    {
                         if (_cards[i] == gameObject.GetComponent<Card>())
                             _cards[i] = null;
                     }
                 }
-                else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("CardConnectionPlayer2")) && hit.transform.childCount < 1)
+                else if (Physics.Raycast(ray, out hit, Mathf.Infinity, LayerMask.GetMask("CardConnectionPlayer2")) && hit.transform.childCount < 1 && Convert.ToInt32(_cost.text) <= thisManaPlayer2)
                 {
                     gameObject.transform.SetParent(hit.transform);
                     _cards = cardManager._playerHand2._cards;
+                    thisManaPlayer2 -= Convert.ToInt32(_cost.text);
+                    Debug.Log(thisManaPlayer2);
+                    if (thisManaPlayer2 < 1) {
+                        cardManager.walkingPlayer = 1;
+                        cardManager.manaPlayer2++;
+                        cardManager.manaPlayer2Text.text = "<color=blue>Мана: <color=yellow>" + cardManager.manaPlayer2.ToString();
+                    }
+                    else
+                    {
+                        cardManager.manaPlayer2Text.text = "<color=blue>Мана: <color=yellow>" + thisManaPlayer2.ToString();
+                    }
                     for (int i = 0; i < _cards.Length; i++)
                     {
-                        cardManager.walkingPlayer = 1;
                         if (_cards[i] == gameObject.GetComponent<Card>())
                             _cards[i] = null;
                     }
@@ -317,5 +352,3 @@ namespace Cards
 
     }
 }
-
-

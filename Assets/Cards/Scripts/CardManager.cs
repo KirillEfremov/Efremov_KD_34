@@ -1,9 +1,12 @@
 ﻿using Cards;
 using Cards.ScriptableObjects;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
+using Random = UnityEngine.Random;
 
 namespace Cards
 {
@@ -14,7 +17,11 @@ namespace Cards
         protected Material _baseMat; 
         protected List<CardPropertiesData> _allCards;
         protected Card[] _deck1;
-        protected Card[] _deck2; 
+        protected Card[] _deck2;
+        public int manaPlayer1;
+        public TMP_Text manaPlayer1Text;
+        public int manaPlayer2;
+        public TMP_Text manaPlayer2Text;
         [SerializeField]
         private CardPackConfiguration[] _packs; 
         [SerializeField] 
@@ -39,6 +46,9 @@ namespace Cards
         public static int _cardNumber2 = 3;
 
         public int walkingPlayer = 1;
+
+        public TMP_Text healthPlayer1;
+        public TMP_Text healthPlayer2;
   
         private void Awake()
         {
@@ -68,32 +78,33 @@ namespace Cards
 
         private void Update()
         {
-            if (_camerMove.CamerMove == false)
+            if (Input.GetKeyDown(KeyCode.Space) && walkingPlayer == 1)
             {
-                if (Input.GetKeyDown(KeyCode.Space))
+                for (int i = _deck1.Length - 1; i >= 0; i--)
                 {
-                    for (int i = _deck1.Length - 1; i >= 0; i--)
-                    {
-                        if (_deck1[i] == null) continue;
-
-                        _playerHand1.SetNewCard1(_deck1[i]);
-                        _deck1[i] = null;
-                        break;
-                    }
+                    if (_deck1[i] == null) continue;
+                    _playerHand1.SetNewCard1(_deck1[i]);
+                    _deck1[i] = null;
+                    break;
+                }
+                if (_deck1Parent.childCount == 0)
+                {
+                    healthPlayer1.text = (Convert.ToInt32(healthPlayer1.text) - 1).ToString();
                 }
             }
-            if (_camerMove.CamerMove == true)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
-                {
-                    for (int i = _deck2.Length - 1; i >= 0; i--)
-                    {
-                        if (_deck2[i] == null) continue;
 
-                        _playerHand2.SetNewCard2(_deck2[i]);
-                        _deck2[i] = null;
-                        break;
+            if (Input.GetKeyDown(KeyCode.Space) && walkingPlayer == 2)
+            {
+                for (int i = _deck2.Length - 1; i >= 0; i--)
+                {
+                    if (_deck2[i] == null) continue;
+                    _playerHand2.SetNewCard2(_deck2[i]);
+                    _deck2[i] = null;
+                    if (_deck2Parent.childCount == 0)
+                    {
+                        healthPlayer2.text = (Convert.ToInt32(healthPlayer2.text) - 1).ToString();
                     }
+                    break;
                 }
             }
         }
@@ -122,6 +133,16 @@ namespace Cards
 
         public void SetWalkingPlayer(int newWalkingPlayer)
         {
+            if (walkingPlayer == 1 && walkingPlayer != newWalkingPlayer)
+            {
+                manaPlayer1++;
+                manaPlayer1Text.text = "<color=blue>Мана: <color=yellow>" + manaPlayer1.ToString();
+            }
+            else if (walkingPlayer == 2 && walkingPlayer != newWalkingPlayer)
+            {
+                manaPlayer2++;
+                manaPlayer2Text.text = "<color=blue>Мана: <color=yellow>" + manaPlayer2.ToString();
+            }
             walkingPlayer = newWalkingPlayer;
         }
     }
