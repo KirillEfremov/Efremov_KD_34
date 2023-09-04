@@ -135,12 +135,12 @@ namespace Cards
         {
             if (walkingPlayer == 1 && walkingPlayer != newWalkingPlayer)
             {
-                manaPlayer1++;
+                if (manaPlayer1 < 10) {manaPlayer1++;}
                 manaPlayer1Text.text = "<color=blue>Мана: <color=yellow>" + manaPlayer1.ToString();
             }
             else if (walkingPlayer == 2 && walkingPlayer != newWalkingPlayer)
             {
-                manaPlayer2++;
+                if (manaPlayer2 < 10) {manaPlayer2++;}
                 manaPlayer2Text.text = "<color=blue>Мана: <color=yellow>" + manaPlayer2.ToString();
             }
             walkingPlayer = newWalkingPlayer;

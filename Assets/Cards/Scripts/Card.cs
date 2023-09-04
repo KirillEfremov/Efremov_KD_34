@@ -265,7 +265,7 @@ namespace Cards
                     if (thisManaPlayer1 < 1)
                     {
                         cardManager.walkingPlayer = 2;
-                        cardManager.manaPlayer1++;
+                        if (cardManager.manaPlayer1 < 10) {cardManager.manaPlayer1++;}
                         cardManager.manaPlayer1Text.text = "<color=blue>Мана: <color=yellow>" + cardManager.manaPlayer1.ToString();
                     }
                     else
@@ -286,7 +286,7 @@ namespace Cards
                     Debug.Log(thisManaPlayer2);
                     if (thisManaPlayer2 < 1) {
                         cardManager.walkingPlayer = 1;
-                        cardManager.manaPlayer2++;
+                        if (cardManager.manaPlayer2 < 10) {cardManager.manaPlayer2++;}
                         cardManager.manaPlayer2Text.text = "<color=blue>Мана: <color=yellow>" + cardManager.manaPlayer2.ToString();
                     }
                     else
